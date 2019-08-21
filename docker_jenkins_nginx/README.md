@@ -14,6 +14,6 @@ make build run
 ```
 
 ```
-docker exec jenkins_master_1 cat /var/log/jenkins/jenkins.log
+docker exec jenkins_master_2 cat /var/log/jenkins/jenkins.log
 
 ```
