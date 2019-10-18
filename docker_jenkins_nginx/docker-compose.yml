@@ -2,7 +2,7 @@ version: '3'
 services:
   master:
     build: ./jenkins-master
-    container_name: jenkins_master_2
+    container_name: jenkins_master
     ports:
       - "50000:50000"
     volumes:
@@ -12,7 +12,7 @@ services:
       - jenkins-net
   nginx:
     build: ./jenkins-nginx
-    container_name: jenkins_nginx_2
+    container_name: jenkins_nginx
     ports:
       - "80:80"
     networks:
