@@ -2,4 +2,10 @@ node {
    stage('gitscm') {
     checkout scm
    }
+   
+   stage('hello') {
+    steps {
+            echo 'Hello World'
+         }
+   }
 }
