@@ -13,13 +13,6 @@ pipeline {
    agent any
    steps {
     echo 'branch name ' + env.BRANCH_NAME
-    if (env.BRANCH_NAME.startsWith("Development-")) {
-     timeout(time: 2000, unit: 'SECONDS') {
-      echo "world"
-     }
-    } else {
-     echo "SonarQube Analysis Skipped"
-    }
    }
   }
  }
