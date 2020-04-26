@@ -1,6 +1,9 @@
 pipeline {
  agent none
  stages {
+  stage('SCM Checkout') {
+   checkout scm
+  }
   stage('Compile') {
    agent any
    steps {
