@@ -13,12 +13,14 @@ pipeline {
    agent any
    steps {
     echo env.GIT_BRANCH
-    if (env.GIT_BRANCH.startsWith("origin/master")) {
-     timeout(time: 2000, unit: 'SECONDS') {
-      echo "master"
+    script {
+     if (env.GIT_BRANCH.startsWith("origin/master")) {
+      timeout(time: 2000, unit: 'SECONDS') {
+       echo "master"
+      }
+     } else {
+      echo "SonarQube Analysis Skipped"
      }
-    } else {
-     echo "SonarQube Analysis Skipped"
     }
    }
   }
