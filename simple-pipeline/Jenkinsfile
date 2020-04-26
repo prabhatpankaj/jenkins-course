@@ -1,17 +1,26 @@
 pipeline {
-    agent none 
-    stages {
-        stage('Example Build') {
-            agent any 
-            steps {
-                echo 'Hello, Maven'
-            }
-        }
-        stage('Example Test') {
-            agent any 
-            steps {
-                echo 'Hello, JDK'
-            }
-        }
+ agent none
+ stages {
+  stage('Compile') {
+   agent any
+   steps {
+    timeout(time: 2000, unit: 'SECONDS') {
+        echo "hello"
     }
+   }
+  }
+  stage('Sonarqube Test') {
+   agent any
+   steps {
+    echo 'branch name ' + env.BRANCH_NAME
+    if (env.BRANCH_NAME.startsWith("Development-")) {
+     timeout(time: 2000, unit: 'SECONDS') {
+      echo "world"
+     }
+    } else {
+     echo "SonarQube Analysis Skipped"
+    }
+   }
+  }
+ }
 }
