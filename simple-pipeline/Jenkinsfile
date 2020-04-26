@@ -12,7 +12,7 @@ pipeline {
   stage('Sonarqube Test') {
    agent any
    steps {
-    echo "Running ${env}"
+    sh 'printenv'
    }
   }
  }
