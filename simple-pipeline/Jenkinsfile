@@ -13,6 +13,7 @@ pipeline {
   stage('Sonarqube Test') {
    agent any
    steps {
+    checkout scm
     echo env.GIT_BRANCH
     script {
      if (env.GIT_BRANCH.startsWith("origin/master")) {
