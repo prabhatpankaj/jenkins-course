@@ -12,7 +12,7 @@ pipeline {
   stage('Sonarqube Test') {
    agent any
    steps {
-    echo 'branch name ' + env.BRANCH_NAME
+    echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
    }
   }
  }
