@@ -1,25 +1,17 @@
 pipeline {
- agent any
- stages {
-  stage('One') {
-   steps {
-    echo 'Hi, this is Zulaikha from edureka'
-   }
-  }
-  stage('Two') {
-   steps {
-    input('Do you want to proceed?')
-   }
-  }
-  stage('Three') {
-   when {
-    not {
-     branch "master"
+    agent none 
+    stages {
+        stage('Example Build') {
+            agent any 
+            steps {
+                echo 'Hello, Maven'
+            }
+        }
+        stage('Example Test') {
+            agent any 
+            steps {
+                echo 'Hello, JDK'
+            }
+        }
     }
-   }
-   steps {
-    echo "Hello"
-   }
-  }
- }
 }
