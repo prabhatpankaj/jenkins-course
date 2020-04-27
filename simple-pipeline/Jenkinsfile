@@ -6,24 +6,28 @@ pipeline {
    steps {
     checkout scm
     timeout(time: 2000, unit: 'SECONDS') {
-        echo "hello"
+     echo "comple stage"
     }
    }
   }
   stage('Sonarqube Test') {
    agent any
    steps {
+       script {
     checkout scm
-    echo env.GIT_BRANCH
-    script {
-     if (env.GIT_BRANCH.startsWith("origin/master")) {
-      timeout(time: 2000, unit: 'SECONDS') {
-       echo "master"
+    echo 'branch name ' + env.GIT_BRANCH
+    if (env.GIT_BRANCH.startsWith("origin/Feature_")) {
+     timeout(time: 2000, unit: 'SECONDS') {
+      withSonarQubeEnv(credentialsId: 'Sonarqube-Secret-Keys') {
+       dir("${env.WORKSPACE}/xDesignTest") {
+        bat "mvn sonar:sonar"
+       }
       }
-     } else {
-      echo "SonarQube Analysis Skipped"
      }
+    } else {
+     echo "SonarQube Analysis Skipped"
     }
+       }
    }
   }
  }
